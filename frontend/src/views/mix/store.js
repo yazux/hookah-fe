@@ -5,6 +5,7 @@ export default {
     namespaced: true,
     state: {
       endpoint: 'mix',
+      mix: {},
       mixes: {
         total: 1,
         last_page: 1,
@@ -21,24 +22,35 @@ export default {
       sortType: 'rating_desc',
     },
     actions: {
-        getMixes({ state, dispatch, rootState }, options) {
-            let params = {
-              page:       (options && options.page)  ? options.page  : 1,
-              count:      (options && options.count) ? options.count : 100,
-              order_by:   state.sortTypes[state.sortType]['field'],
-              order_type: state.sortTypes[state.sortType]['dir'],
-              filter:     (options.filter) ? options.filter : {model: [], relation: []}
-            };
-            return Vue.http.get(rootState.endpoint + '/mix', {params: params}).then(
-              response => {
-                Vue.set(state, 'mixes', response.body.response);
-                return response.body.response;
-              }, response => {
-                Vue.set(state, 'mixes', false);
-                this.commit('showSnackbar', [response.body.errors.messages, 6000]);
-              }
-            );
-        },
+      getMixes({ state, dispatch, rootState }, options) {
+          let params = {
+            page:       (options && options.page)  ? options.page  : 1,
+            count:      (options && options.count) ? options.count : 100,
+            order_by:   state.sortTypes[state.sortType]['field'],
+            order_type: state.sortTypes[state.sortType]['dir'],
+            filter:     (options.filter) ? options.filter : {model: [], relation: []}
+          };
+          return Vue.http.get(rootState.endpoint + '/mix', {params: params}).then(
+            response => {
+              Vue.set(state, 'mixes', response.body.response);
+              return response.body.response;
+            }, response => {
+              Vue.set(state, 'mixes', false);
+              this.commit('showSnackbar', [response.body.errors.messages, 6000]);
+            }
+          );
+      },
+      getMix({ state, dispatch, rootState }, id) {
+        return Vue.http.get(rootState.endpoint + '/mix/' + id).then(
+          response => {
+            Vue.set(state, 'mix', response.body.response);
+            return response.body.response;
+          }, response => {
+            Vue.set(state, 'mix', false);
+            this.commit('showSnackbar', [response.body.errors.messages, 6000]);
+          }
+        );
+      }
     }
   }
 }

@@ -53,7 +53,7 @@ export default {
             });
         },
         toMix(mix) {
-            //this.$router.push({name: 'Vendor', params: {id: vendor.id}});
+            this.$router.push({name: 'Mix', params: {id: mix.id}});
         }
     },
     created: function() {
