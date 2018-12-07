@@ -5,7 +5,9 @@ export default {
     namespaced: true,
     state: {
       endpoint: 'mix',
-      mix: {},
+      mix: {
+        stowage: [],
+      },
       mixes: {
         total: 1,
         last_page: 1,
@@ -14,8 +16,8 @@ export default {
       sortTypes: {
         id_asc:  {label: 'По очереди', dir: 'asc',  field: 'rating'},
         id_desc: {label: 'По очереди, в обратном порядке', dir: 'desc',  field: 'rating'},
-        name_asc:  {label: 'По алфавиту',  dir: 'asc',  field: 'price'},
-        name_desc: {label: 'По алфавиту, в обратном порядке',  dir: 'desc',  field: 'price'},
+        name_asc:  {label: 'По алфавиту',  dir: 'asc',  field: 'name'},
+        name_desc: {label: 'По алфавиту, в обратном порядке',  dir: 'desc',  field: 'name'},
         rating_asc:  {label: 'По рейтингу',  dir: 'asc',  field: 'rating'},
         rating_desc: {label: 'По рейтингу, в обратном порядке',  dir: 'desc',  field: 'rating'}
       },
@@ -37,6 +39,7 @@ export default {
             }, response => {
               Vue.set(state, 'mixes', false);
               this.commit('showSnackbar', [response.body.errors.messages, 6000]);
+              return false;
             }
           );
       },
@@ -48,6 +51,7 @@ export default {
           }, response => {
             Vue.set(state, 'mix', false);
             this.commit('showSnackbar', [response.body.errors.messages, 6000]);
+            return false;
           }
         );
       }

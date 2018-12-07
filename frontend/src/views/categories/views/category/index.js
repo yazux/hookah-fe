@@ -1,5 +1,7 @@
+import mixesList from '../../../../components/mixes-list/index.vue';
 export default {
     name: 'category',
+    components: {mixesList},
     data () {
       return {
         pageStack: [],
@@ -12,7 +14,7 @@ export default {
           return this.$store.state.categories.categories;
         },
         mixes() {
-            return this.$store.state.mix.mixes.data;
+          return this.$store.state.mix.mixes.data;
         }
     },
     watch: {
@@ -37,7 +39,7 @@ export default {
             }
         },
         getCategory() {
-            if (!this.categories.length) return false;
+            if (parseInt(this.categories.id) === parseInt(this.$route.params.id)) return false;
             this.categories.map(item => {
                 if (item.id == this.$route.params.id) this.category = Object.assign({}, item);
             });
@@ -51,9 +53,6 @@ export default {
             this.$store.dispatch('mix/getMixes', {filter: filter}).then(() => {
                 this.$store.commit('hideProgressBar');
             });
-        },
-        toMix(mix) {
-            this.$router.push({name: 'Mix', params: {id: mix.id}});
         }
     },
     created: function() {

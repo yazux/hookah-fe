@@ -5,16 +5,16 @@ export default {
         return {
             tabs: [
                 {
-                  icon: 'md-layers',
+                  icon: 'layer-group',
                   name: 'Vendors'
                 },
                 {
-                  icon: 'md-format-list-bulleted',
+                  icon: 'list-ul',
                   name: 'Categories'
                 },
                 {
-                  icon: 'md-bookmark',
-                  name: 'Test'
+                  icon: 'bookmark',
+                  name: 'Bookmarks'
                 }
             ]
         }

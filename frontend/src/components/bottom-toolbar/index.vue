@@ -1,11 +1,9 @@
 <template>
     <v-ons-bottom-toolbar>
         <div id="bottom-toolbar">
-            <v-ons-toolbar-button v-for="(tab, i) in tabs" :key="i">
-                <router-link :to="{name: tab.name}">
-                    <v-ons-icon :icon="tab.icon" size="30px"></v-ons-icon>
-                </router-link>
-            </v-ons-toolbar-button>
+            <router-link class="bottom-toolbar-button" v-for="(tab, i) in tabs" :key="i" :to="{name: tab.name}">
+                <font-awesome-icon :icon="tab.icon"/>
+            </router-link>
         </div>
     </v-ons-bottom-toolbar>
 </template>
@@ -14,12 +12,17 @@
   #bottom-toolbar {
     display: flex;
     height: 100%;
-    align-content: baseline;
+    align-items: center;
+    align-content: center;
     justify-content: space-between;
     padding: 0px 30px;
   }
-  #bottom-toolbar .toolbar-button{
-      display: flex;
-      align-items: center;
+  #bottom-toolbar .bottom-toolbar-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70pt;
+    height: 35pt;
+    font-size: 20pt;
   }
 </style>

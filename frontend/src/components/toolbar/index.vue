@@ -1,9 +1,7 @@
 <template>
-    <v-ons-toolbar>
+    <v-ons-toolbar class="top-toolbar">
       <!--
-      <div class="left" v-if="!hideBackBtn">
-        <v-ons-back-button>{{$options.backTitle}}</v-ons-back-button>
-      </div>
+      <div class="left" v-if="backButton">Назад</div>
       -->
       <div class="center">{{((title) ? title : '')}}</div>
       <!--
@@ -14,3 +12,12 @@
     </v-ons-toolbar>
 </template>
 <script src="./index.js"></script>
+<style>
+  .top-toolbar{}
+  .top-toolbar .left{}
+  .top-toolbar .center{
+    font-size: 16pt;
+    line-height: 40pt;
+  }
+  .top-toolbar .right{}
+</style>

@@ -1,0 +1,214 @@
+/* fallback */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active  {
+    background-color: transparent !important;
+    -webkit-box-shadow: inset 0 0 0 50px #fff;
+    -webkit-text-fill-color: #000;
+  }
+
+  #app {
+    font-family: -apple-system,'Helvetica Neue',Helvetica,Arial,'Lucida Grande',sans-serif;
+  }
+
+  #app .toolbar, #app .bottom-bar{
+    height: 40pt;
+    -webkit-font-smoothing: antialiased;
+    box-shadow: 0 1px 2px rgba(0,0,0,.12);
+  }
+  #app .bottom-bar{
+    box-shadow: 0 -1px 2px rgba(0,0,0,.12);
+  }
+
+  #app .fullscreen{
+    width: 100%;
+    height: calc(100% - 80pt);
+    bottom: 40pt;
+    top: 40pt;
+  }
+  #app .layer-over {
+    position: absolute;
+    z-index: 999;
+  }
+  #app .progress-bar-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(2255,255,255,0.9);
+  }
+  #app .page__content{
+    bottom: 40pt;
+    top: 40pt;
+  }
+  #app .rating-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  #app .rating-container svg {
+    font-size: 15pt;
+    margin-bottom: 5px;
+  }
+  #app .rating-container span {
+    font-size: 13pt;
+    line-height: 13pt;
+  }
+  #app .cart-title {
+    font-size: 18px;
+    margin: 0 0 0.2em 0;
+  }
+  #app .tag {
+    display: inline;
+    background: #f0f2f4;
+    border: 1px solid #eee;
+    padding: 3px 5px;
+    border-radius: 4px;
+    margin: 2px;
+    font-size: 13px;
+    line-height: 13px;
+  }
+  #app .tag.small {
+    font-size: 10pt;
+    line-height: 10pt;
+    padding: 2px 4px;
+    border-radius: 3px;
+  }
+  #app .tag-container {
+    width: 100%;
+    /*display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    */
+  }
+  #app .app-page {
+    background-color: #fff;
+    padding: 1px 15px;
+    height: 100%;
+    width: calc(100% - 30px);
+    overflow-x: hidden;
+  }
+  #app .app-list,
+  #app .app-card{}
+  #app .app-list .list-head,
+  #app .app-card .card-head{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    margin-bottom: 10px;
+  }
+  #app .app-list .list-head .list-icon,
+  #app .app-card .card-head .card-icon{
+    background: #f0f2f4;
+    padding: 10px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    font-size: 24px;
+    line-height: 1px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12), 0 3px 1px -2px rgba(0,0,0,.2);
+    margin-right: 10px;
+  }
+  #app .app-list .list-title,
+  #app .app-card .card-title{
+    padding: 0px;
+    text-transform: none;
+    font-family: inherit;
+    color: #000;
+    font-size: 18px;
+  }
+  #app .app-list .list-container,
+  #app .app-card .card-container{}
+  #app .app-list .list-container .list-item{
+    font-size: 16px;
+    padding: 7px 0px;
+  }
+  #app .property{
+    font-size: 14px;
+  }
+  #app .property.full-width{
+    font-size: 14px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  #app .property.full-width .title{
+    width: 50%;
+  }
+  #app .property.full-width .value{
+    width: 50%;
+  }
+  #app .property .title{
+    display: initial;
+    margin: 0px;
+  }
+  #app .property .value{
+    display: initial;
+  }
+
+  #app .no-padding {
+    padding: 0 !important;
+  }
+
+/** flex **/
+  #app .flex {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+/** flex **/
+
+/** buttons **/
+  ons-button.button {
+
+  }
+  ons-button.small {
+    line-height: 16px;
+    font-size: 14px;
+  }
+/** buttons **/
+
+/** card **/
+  #app .card {
+    -webkit-font-smoothing: antialiased;
+    box-shadow: 0 1px 2px rgba(0,0,0,.12);
+    border-radius: 8px;
+    background-color: #fff;
+  }
+  #app .card .title{
+    text-align: center;
+    width: 100%;
+    margin: 0 0 8px 0;
+    display: block;
+    font-size: 16pt;
+  }
+  #app .card .title.center{}
+  #app .card .content{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: flex-start;
+    font-size: 13pt;
+  }
+  #app .card .content.center{
+    align-items: center;
+  }
+/** card **/
+
+/** input **/
+
+/** input **/
+
+/** list **/
+  #app .list{
+    font-size: 14pt;
+  }
+/** list **/

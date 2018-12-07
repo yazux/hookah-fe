@@ -1,10 +1,21 @@
+import radialProgress from './../../../../components/radial-progress/index.vue';
+import toBookmarksBtn from './../../../../components/to-bookmarks-btn/index.vue';
 export default {
     name: 'Mix',
+    components: {radialProgress, toBookmarksBtn},
     data () {
       return {
         pageStack: [],
-        title: 'Макс',
-        category: false
+        title: 'Микс',
+        category: false,
+        newMix: {
+            tobacco: false,
+            stowage: false,
+            liquid: false,
+            coal: false,
+            description: false,
+            additionally: false
+        }
       }
     },
     computed: {
@@ -24,10 +35,15 @@ export default {
         },
         '$route.mix_id'() {
             this.init();
-        },  
+        },
+        'mix'(mix) {
+            this.newMix = Object.assign({}, mix);
+            this.$store.commit('setTitle', mix.name);
+        }
     },
     methods: {
         init() {
+            this.$store.commit('showBackBtn', true);
             this.getMix();
         },
         getMix() {

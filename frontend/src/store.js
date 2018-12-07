@@ -13,7 +13,9 @@ export const store = new Vuex.Store({
       message: ''
     },
     title: '',
-    progress: false
+    progress: false,
+    backButton: false,
+    routeAfterAuth: {name: 'Categories'}
   },
   mutations: {
     setTitle(state, title) {
@@ -42,12 +44,19 @@ export const store = new Vuex.Store({
       state.snackbar.show    = false;
       state.snackbar.message = '';
     },
+    showBackBtn(state, value) {
+      state.backButton = (value) ? true : false;
+    },
+    setRouteAfterAuth(state, route) {
+      Vue.set(state, 'routeAfterAuth', Object.assign({}, route));
+    }
   },
   actions: {
     init({ dispatch }) {
+      dispatch('profile/getCurrentUser');
       //dispatch('vendors/getVendors');
       //dispatch('categories/getCategories');
-    },
+    }
   },
   modules: ModuleStores
 });

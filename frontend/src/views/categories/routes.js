@@ -4,7 +4,7 @@ import Category from './views/category/index.vue'
 export default {
   routes: [
     {
-      path: '/category',
+      path: '/',
       name: 'Categories',
       component: Categories
     },
