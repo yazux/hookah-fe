@@ -37,20 +37,21 @@
         return this.$store.state.progress;
       }
     },
-    methods: {},
+    methods: {
+      init() {
+        this.$store.commit('setTitle', 'Производители');
+
+        const mapRouteStack = route => (this.pageStack = route.matched.map((m) => m.components.default));
+        //устанавливаем начальную страницу home
+        mapRouteStack(this.$route);
+        //beforeEach - реагирует на изменение $router
+        this.$router.beforeEach(function (to, from, next) {
+          if (mapRouteStack(to)) { return next(); }
+        });
+      },
+    },
     created() {
-      this.$store.commit('setTitle', 'Производители');
-
-      const mapRouteStack = route => (this.pageStack = route.matched.map((m) => m.components.default));
-
-      //устанавливаем начальную страницу home
-      mapRouteStack(this.$route);
-
-      //beforeEach - реагирует на изменение $router
-      this.$router.beforeEach(function (to, from, next) {
-        if (mapRouteStack(to)) { return next(); }
-      });
-
+      this.init();
     }
   }
 </script>

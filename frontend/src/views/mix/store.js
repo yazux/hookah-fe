@@ -6,7 +6,9 @@ export default {
     state: {
       endpoint: 'mix',
       mix: {
+        id: null,
         stowage: [],
+        rating: 0
       },
       mixes: {
         total: 1,
@@ -23,6 +25,33 @@ export default {
       },
       sortType: 'rating_desc',
     },
+    mutations: {
+      /**
+       * Обновляет значение рейтинга микса в хранилище
+       * @param state
+       * @param value
+       */
+      setMixRating(state, value) {
+        Vue.set(state, 'mix.rating', value);
+        state.mix.rating = value;
+        this.commit('mix/setMixRatingInMixes', {mix_id: state.mix.id, value: value});
+        this.commit('bookmark/setMixRatingInMixes', {mix_id: state.mix.id, value: value});
+      },
+      /**
+       * Обновляет значение рейтинга микса в списке миксов
+       * @param state
+       * @param data
+       */
+      setMixRatingInMixes(state, data) {
+        if (state.mixes.data.length && data.mix_id) {
+          state.mixes.data.map(mix => {
+            if (parseInt(mix.id) === parseInt(data.mix_id)) {
+              mix.rating = data.value;
+            }
+          });
+        }
+      }
+    },
     actions: {
       getMixes({ state, dispatch, rootState }, options) {
           let params = {
@@ -30,7 +59,7 @@ export default {
             count:      (options && options.count) ? options.count : 100,
             order_by:   state.sortTypes[state.sortType]['field'],
             order_type: state.sortTypes[state.sortType]['dir'],
-            filter:     (options.filter) ? options.filter : {model: [], relation: []}
+            filter:     (options && options.filter) ? options.filter : {model: [], relation: []}
           };
           return Vue.http.get(rootState.endpoint + '/mix', {params: params}).then(
             response => {

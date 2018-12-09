@@ -1,7 +1,7 @@
 <template>
     <v-ons-toolbar class="top-toolbar">
       <!--
-      <div class="left" v-if="backButton">Назад</div>
+      <div class="left" v-show="backButton" v-on:click="$root.goBack">Назад</div>
       -->
       <div class="center">{{((title) ? title : '')}}</div>
       <!--
@@ -18,6 +18,9 @@
   .top-toolbar .center{
     font-size: 16pt;
     line-height: 40pt;
+  }
+  .top-toolbar .center:first-letter{
+    text-transform: uppercase;
   }
   .top-toolbar .right{}
 </style>

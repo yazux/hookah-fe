@@ -9,24 +9,25 @@ import VueOnsen from 'vue-onsenui';
 import Toolbar from './components/toolbar/index.vue';
 import gapi from './assets/js/gapi.js';
 
+/** Font Awesome **/
 import { library } from '@fortawesome/fontawesome-svg-core'
+import {
+  faStar as fstar,
+  faThumbsUp as RFaThumbsUp,
+  faThumbsDown as RFaThumbsDown
+} from '@fortawesome/free-regular-svg-icons';
 import {
   faListUl, faLayerGroup, faBookmark, faStar,
   faStream, faFlask, faFire
 } from '@fortawesome/free-solid-svg-icons'
+library.add([
+  faLayerGroup, faListUl, faStar, faBookmark,
+  faStream, faFlask, faFire, fstar, RFaThumbsUp, RFaThumbsDown
+]);
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
-library.add(faLayerGroup);
-library.add(faListUl);
-library.add(faBookmark);
-library.add(faStar);
-library.add(faStream);
-library.add(faFlask);
-library.add(faFire);
-
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.config.productionTip = false;
-
+/** Font Awesome **/
 
 import 'onsenui/css/onsenui-core.min.css';
 //import 'onsenui/css/onsenui-fonts.css';
@@ -36,7 +37,6 @@ import 'onsenui/css/onsen-css-components.css';
 import './assets/css/main.css';
 
 Vue.prototype.gapi = gapi;
-
 Vue.use(VueResource);
 Vue.use(VueOnsen);
 Vue.use(VueRouter);
@@ -65,8 +65,10 @@ new Vue({
   data() {
     return {}
   },
+  beforeCreate: function () {},
   created: function () {
     this.$nextTick(() => {
+      this.init();
       this.$store.dispatch('init');
     });
   },
@@ -87,8 +89,25 @@ new Vue({
     }
   },
   methods: {
+    init() {
+      this.$ons.ready(() => {
+        this.$ons.disableDeviceBackButtonHandler();
+        document.addEventListener('backbutton', e => {
+          e.preventDefault();
+          if (this.$route.name === 'Categories') {
+            this.$store.commit('showSnackbar', ["Для выхода нажмите 'Назад' ещё раз", 2000]);
+            this.$ons.enableDeviceBackButtonHandler();
+            setTimeout(() => {
+              this.$ons.disableDeviceBackButtonHandler();
+            }, 2000);
+          } else {
+            this.goBack();
+          }
+        }, false);
+      });
+    },
     goBack() {
-      this.$router.push({ name: this.$route.matched[this.$route.matched.length - 2].name });
+      this.$router.back();
     },
     checkAuth(routeAfterAuth) {
       this.$nextTick(() => {
@@ -96,7 +115,7 @@ new Vue({
         if (!this.login) this.$router.push({name: 'Login'});
       });
       return this.login;
-    }
+    },
   },
   render: h => h(App)
 });

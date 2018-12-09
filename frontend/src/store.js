@@ -45,7 +45,7 @@ export const store = new Vuex.Store({
       state.snackbar.message = '';
     },
     showBackBtn(state, value) {
-      state.backButton = (value) ? true : false;
+      state.backButton = !!(value);
     },
     setRouteAfterAuth(state, route) {
       Vue.set(state, 'routeAfterAuth', Object.assign({}, route));

@@ -23,6 +23,22 @@ export default {
       },
       sortType: 'rating_desc',
     },
+    mutations: {
+      /**
+       * Обновляет значение рейтинга микса в списке закладок
+       * @param state
+       * @param data
+       */
+      setMixRatingInMixes(state, data) {
+        if (state.bookmarks.data.length && data.mix_id) {
+          state.bookmarks.data.map(bookmark => {
+            if (parseInt(bookmark.mix_id) === parseInt(data.mix_id)) {
+              bookmark.mix.rating = data.value;
+            }
+          });
+        }
+      }
+    },
     actions: {
       getBookmarks({ state, dispatch, rootState }, options) {
         let params = {

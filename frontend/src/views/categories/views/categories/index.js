@@ -8,7 +8,7 @@ export default {
     },
     computed: {
         categories() {
-          return this.$store.state.categories.categories;
+          return this.$store.state.categories.categories.data;
         }
     },
     watch: {
@@ -21,7 +21,7 @@ export default {
             this.$store.commit('setTitle', this.title);
             if (!this.categories.length) {
                 this.$store.commit('showProgressBar');
-                this.$store.dispatch('categories/getCategories').then(() => {
+                this.$store.dispatch('categories/getCategories', {filter: {"has_relation":["mixes"],"relation":[],"model":[]}}).then(() => {
                     this.$store.commit('hideProgressBar');
                 });
             }

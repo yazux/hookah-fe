@@ -1,8 +1,9 @@
 import radialProgress from './../../../../components/radial-progress/index.vue';
 import toBookmarksBtn from './../../../../components/to-bookmarks-btn/index.vue';
+import rating from './../../../../components/rating/index.vue';
 export default {
     name: 'Mix',
-    components: {radialProgress, toBookmarksBtn},
+    components: {radialProgress, toBookmarksBtn, rating},
     data () {
       return {
         pageStack: [],
@@ -25,6 +26,9 @@ export default {
         mixes() {
             return this.$store.state.mix.mixes.data;
         },
+        user() {
+          return this.$store.state.profile.user;
+        }
     },
     watch: {
         '$route.name'(name) {
@@ -36,9 +40,12 @@ export default {
         '$route.mix_id'() {
             this.init();
         },
-        'mix'(mix) {
+        'mix': {
+          handler: function (mix) {
             this.newMix = Object.assign({}, mix);
             this.$store.commit('setTitle', mix.name);
+          },
+          deep: true
         }
     },
     methods: {

@@ -15,8 +15,11 @@
         </div>
       </v-ons-card>
 
-      <v-ons-card v-if="newMix && newMix.id">
-        <to-bookmarks-btn v-bind:mix-id="newMix.id" v-bind:bookmarks="newMix.bookmarks"></to-bookmarks-btn>
+      <v-ons-card class="action-bar-card" v-if="user && user.id && newMix && newMix.id">
+        <div class="action-bar">
+          <to-bookmarks-btn v-bind:mix-id="newMix.id" v-bind:bookmarks="newMix.bookmarks"></to-bookmarks-btn>
+          <rating type="mix" :user-id="user.id" :mix-id="newMix.id" :value="newMix.rating" :user-rating="newMix.user_rating"></rating>
+        </div>
       </v-ons-card>
 
       <v-ons-card v-if="newMix.stowage">
@@ -114,5 +117,13 @@
 
   .tobacco-page .additionally{
     padding-top: 10px;
+  }
+  .tobacco-page .action-bar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .tobacco-page .action-bar-card{
+    padding: 0px 16px;
   }
 </style>
